@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>装备属性模拟器 - 诛仙世界</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <div class="header">
+      <h1>装备属性模拟器</h1>
+      <div class="plan-toolbar">
+        <span class="plan-label">方案</span>
+        <select id="plan-sel"></select>
+        <button id="btn-new-plan" class="btn btn-tool">新建</button>
+        <button id="btn-rename-plan" class="btn btn-tool">重命名</button>
+        <button id="btn-del-plan" class="btn btn-tool">删除</button>
+        <button id="btn-export" class="btn btn-tool">导出</button>
+        <button id="btn-import" class="btn btn-tool">导入</button>
+      </div>
+      <div class="actions">
+        <button id="btn-calc" class="btn btn-calc">计算属性</button>
+        <button id="btn-save" class="btn btn-save">保存配置</button>
+        <button id="btn-reset" class="btn btn-reset">重置本页</button>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="side left">
+        <div class="side-title">装备栏 (左)</div>
+        <div id="left-equip" class="equip-list"></div>
+      </div>
+
+      <div class="center">
+        <div class="char-img" id="char-img" style="background-image:url('char.png');background-size:cover;background-position:center;"></div>
+        <div class="char-tip">📌 提示：所有改动实时计算，保存后下次启动自动恢复</div>
+      </div>
+
+      <div class="side right">
+        <div class="side-title">装备栏 (右)</div>
+        <div id="right-equip" class="equip-list"></div>
+      </div>
+    </div>
+
+    <div class="systems">
+      <div class="sys-block">
+        <h2>机巧盘 <small>(每块 +540 自选, 4 选 1)</small></h2>
+        <div class="sys-row" id="jiqiao-input"></div>
+        <div class="sys-tip">总块数: <span id="jiqiao-sum">0</span> / 9</div>
+      </div>
+
+      <div class="sys-block">
+        <h2>符文 <small>(9 槽, 每槽 1 颗, 4 选 1)</small></h2>
+        <div id="rune-input"></div>
+        <div class="sys-tip">总颗数: <span id="rune-sum">0</span> / 9</div>
+      </div>
+
+      <div class="sys-block">
+        <h2>丹药 <small>(同时只吃 1 种, 3 等级 × 4 属性, 单选)</small></h2>
+        <div id="dan-input"></div>
+      </div>
+
+      <div class="sys-block">
+        <h2>食物 <small>(同时只吃 1 种, 3 等级 × 4 属性, 单选)</small></h2>
+        <div id="food-input"></div>
+      </div>
+
+      <div class="sys-block full">
+        <h2>稀有护符额外 3 条 × +1500 <small>(勾选护符稀有后生效)</small></h2>
+        <div id="rare-extra"></div>
+      </div>
+
+      <div class="sys-block full">
+        <h2>铭锋 <small>(默认为 0, 没铭锋就填 0)</small></h2>
+        <div class="sys-row">
+          <div class="item">
+            <label>四属性铭锋 (所有属性各加)</label>
+            <input type="number" id="ming-all" min="0" value="0">
+          </div>
+          <div class="item">
+            <label>最高属性铭锋 (当前最高属性加)</label>
+            <input type="number" id="ming-top" min="0" value="0">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="result" id="result-section">
+      <h2>属性汇总</h2>
+      <div class="result-table" id="result-table"></div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="logic.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

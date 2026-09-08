@@ -1,0 +1,19 @@
+# 测试 / 调试文件
+_*.py
+_*.txt
+_*.png
+
+# 本地服务器日志
+server.err
+server.log
+
+# 临时回收站
+check_trash/
+
+# 部署包 (由 Compress-Archive 重新生成, 不进仓库)
+*.zip
+
+# 系统文件
+.DS_Store
+Thumbs.db
+desktop.ini
