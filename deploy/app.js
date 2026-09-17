@@ -393,9 +393,9 @@ function renderEquipCard(slot) {
       attrCount = 1;
       attrDisabled = [false];
     } else if (slot.id === 'fa') {
-      // 稀有法印: 大=元御灰, 小1 限制非元御, 小2=元御灰
-      attrCount = 3;
-      attrDisabled = [true, false, true];
+      // 稀有法印: 大=元御灰, 小=专精灰, 都 disabled (2 词条固定, 不可改)
+      attrCount = 2;
+      attrDisabled = [true, true];
     }
   } else {
     // 普通装备 (含武器) = 2 个不同类型下拉
@@ -513,14 +513,7 @@ function bindEquipEvents(slots) {
           }
         }
 
-        // 稀有法印: 小1 (idx=1) 强制非元御
-        if (cfg.isRare && slot.id === 'fa' && idx === 1) {
-          if (newVal === '元御') {
-            newVal = '专精';
-            sel.value = newVal;
-            flashMsg('法印稀有第 1 小不能是元御, 已自动改为专精');
-          }
-        }
+        // 稀有法印: 2 词条固定大元御小专精, 无需 attr-sel 联动 (下拉都 disabled)
 
         cfg.attrs[idx] = newVal;
 
@@ -549,7 +542,7 @@ function bindEquipEvents(slots) {
         } else if (slot.id === 'xl' || slot.id === 'ling') {
           cfg.attrs = ['元御'];
         } else if (slot.id === 'fa') {
-          cfg.attrs = ['元御', '专精', '元御'];  // 大=元御, 小1=专精, 小2=元御
+          cfg.attrs = ['元御', '专精'];  // 大=元御, 小=专精 (固定, 2 词条)
         }
       } else {
         // 取消稀有: 回到普通 2 个下拉

@@ -33,16 +33,14 @@ function calcSlotEntries(slot, cfg) {
       }
       entries.push({ attr: a, value: s + Math.round(s * k) });
     } else if (slot.id === 'fa') {
-      // 稀有法印: 大小小, 大=元御固定, 小1=非元御(attrs[1]), 小2=元御固定, 全部乘强化系数
+      // 稀有法印: 大+小 (跟普通法印一样, 2 词条), 固定 大=元御, 小=专精, 全部乘强化系数
       const g3 = BASE_VALUES[level] && BASE_VALUES[level].G3;
       if (!g3) return entries;
       const k = ENHANCE_COEFF(enhance);
       const b = g3.big;
       const s = g3.small;
-      const small1 = (attrs[1] && attrs[1] !== '元御') ? attrs[1] : '专精';
-      entries.push({ attr: '元御', value: b + Math.round(b * k) });   // 大
-      entries.push({ attr: small1, value: s + Math.round(s * k) });   // 小1
-      entries.push({ attr: '元御', value: s + Math.round(s * k) });   // 小2
+      entries.push({ attr: '元御', value: b + Math.round(b * k) });   // 大=元御
+      entries.push({ attr: '专精', value: s + Math.round(s * k) });   // 小=专精
     }
     return entries;
   }
